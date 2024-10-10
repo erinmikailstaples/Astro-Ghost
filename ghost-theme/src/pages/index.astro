@@ -2,50 +2,17 @@
 import Layout from '../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 
-const posts = await getCollection('posts').catch(e => {
-  console.error('Error fetching posts:', e);
-  return [];
-});
-
-const siteTitle = "erin's blog is working"; // Replace with your actual site title
+const posts = await getCollection('posts');
 ---
 
-<Layout>
-    <h1>Welcome to {siteTitle}</h1>
-    <div class="post-feed">
-        {posts.map((post) => (
-            <div class="browser-window post-card">
-                <div class="browser-bar">
-                    <div class="browser-buttons">
-                        <div class="browser-button"></div>
-                        <div class="browser-button"></div>
-                        <div class="browser-button"></div>
-                    </div>
-                    <span>{post.data.title}</span>
-                </div>
-                <div class="browser-content">
-                    <header class="post-card-header">
-                        <h2><a href={`/posts/${post.slug}`}>{post.data.title}</a></h2>
-                    </header>
-                    <section class="post-card-excerpt">
-                        <p>{post.data.description || post.body.slice(0, 150) + '...'}</p>
-                    </section>
-                </div>
-            </div>
-        ))}
-    </div>
+<Layout title={posts[0]?.data.title || 'Default Title'}>
+	<!-- Rest of your component -->
+  <h1>Welcome to my blog</h1>
+  <ul>
+    {posts.map((post) => (
+      <li>
+        <a href={`/posts/${post.slug}`}>{post.data.title}</a>
+      </li>
+    ))}
+  </ul>
 </Layout>
-
-<style>
-    .post-feed {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        gap: 2rem;
-    }
-    .post-card {
-        transition: transform 0.3s ease;
-    }
-    .post-card:hover {
-        transform: scale(1.05);
-    }
-</style>
