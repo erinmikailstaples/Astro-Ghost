@@ -1,42 +1,25 @@
----
-import Layout from '../layouts/Layout.astro';
----
-<Layout>
-    <h1>Welcome to {{@site.title}}</h1>
-    <div class="post-feed">
-        {{#foreach posts}}
-        <div class="browser-window post-card">
-            <div class="browser-bar">
-                <div class="browser-buttons">
-                    <div class="browser-button"></div>
-                    <div class="browser-button"></div>
-                    <div class="browser-button"></div>
-                </div>
-                <span>{{title}}</span>
-            </div>
-            <div class="browser-content">
-                <header class="post-card-header">
-                    <h2><a href="{{url}}">{{title}}</a></h2>
-                </header>
-                <section class="post-card-excerpt">
-                    <p>{{excerpt words="33"}}</p>
-                </section>
-            </div>
-        </div>
-        {{/foreach}}
-    </div>
-</Layout>
+{{!< default}}
 
-<style lang="scss">
-    .post-feed {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        gap: 2rem;
-    }
-    .post-card {
-        transition: transform 0.3s ease;
-        &:hover {
-            transform: scale(1.05);
-        }
-    }
-</style>
+<h1>Welcome to {{@site.title}}</h1>
+<div class="post-feed">
+    {{#foreach posts}}
+    <div class="browser-window post-card">
+        <div class="browser-bar">
+            <div class="browser-buttons">
+                <div class="browser-button"></div>
+                <div class="browser-button"></div>
+                <div class="browser-button"></div>
+            </div>
+            <span>{{title}}</span>
+        </div>
+        <div class="browser-content">
+            <header class="post-card-header">
+                <h2><a href="{{url}}">{{title}}</a></h2>
+            </header>
+            <section class="post-card-excerpt">
+                <p>{{excerpt words="33"}}</p>
+            </section>
+        </div>
+    </div>
+    {{/foreach}}
+</div>

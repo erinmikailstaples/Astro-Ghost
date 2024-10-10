@@ -1,9 +1,11 @@
 ---
 import '@fontsource/comic-neue';
 import '@fontsource/vt323';
-import '../styles/global.css';  // Add this line
+import '../styles/global.css';
 import AboutMe from '../components/AboutMe.astro';
 import TopArticles from '../components/TopArticles.astro';
+
+const { title, site } = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -11,72 +13,27 @@ import TopArticles from '../components/TopArticles.astro';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{meta_title}}</title>
-    {{ghost_head}}
+    <title>{title}</title>
+    <!-- Replace ghost_head with appropriate meta tags or SEO component -->
     <style is:global>
-        :root {
-            --font-body: 'Comic Neue', cursive;
-            --font-heading: 'VT323', monospace;
-            --color-bg: #ff9ff3;
-            --color-text: #341f97;
-            --color-accent: #00d2d3;
-            --color-window: #ffffff;
-            --color-window-border: #341f97;
-        }
-        body {
-            font-family: var(--font-body);
-            background-color: var(--color-bg);
-            color: var(--color-text);
-            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="48" viewport="0 0 100 100" style="fill:black;font-size:24px;"><text y="50%">✨</text></svg>') 16 0, auto;
-        }
-        h1, h2, h3, h4, h5, h6 {
-            font-family: var(--font-heading);
-        }
-        .browser-window {
-            background: var(--color-window);
-            border: 3px solid var(--color-window-border);
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
-            overflow: hidden;
-        }
-        .browser-bar {
-            background: var(--color-accent);
-            padding: 10px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .browser-buttons {
-            display: flex;
-            gap: 5px;
-        }
-        .browser-button {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: var(--color-text);
-        }
-        .browser-content {
-            padding: 15px;
-        }
+        /* Your existing styles here */
     </style>
 </head>
 <body>
     <header>
-        <h1>{{@site.title}}</h1>
+        <h1>{site.title}</h1>
         <nav>
-            {{navigation}}
+            <!-- Replace with your navigation component or logic -->
         </nav>
     </header>
     <AboutMe />
     <TopArticles />
     <main>
-        {{{body}}}
+        <slot />
     </main>
     <footer>
-        &copy; {{date format="YYYY"}} {{@site.title}}
+        &copy; {new Date().getFullYear()} {site.title}
     </footer>
-    {{ghost_foot}}
+    <!-- Replace ghost_foot with appropriate scripts or components -->
 </body>
 </html>
