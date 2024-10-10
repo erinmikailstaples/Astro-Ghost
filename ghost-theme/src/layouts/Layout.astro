@@ -1,0 +1,46 @@
+---
+import '@fontsource/comic-neue';
+import '@fontsource/vt323';
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{meta_title}}</title>
+    {{ghost_head}}
+    <style is:global>
+        :root {
+            --font-body: 'Comic Neue', cursive;
+            --font-heading: 'VT323', monospace;
+            --color-bg: #ff9ff3;
+            --color-text: #341f97;
+            --color-accent: #00d2d3;
+        }
+        body {
+            font-family: var(--font-body);
+            background-color: var(--color-bg);
+            color: var(--color-text);
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>{{@site.title}}</h1>
+        <nav>
+            {{navigation}}
+        </nav>
+    </header>
+    <main>
+        {{{body}}}
+    </main>
+    <footer>
+        &copy; {{date format="YYYY"}} {{@site.title}}
+    </footer>
+    {{ghost_foot}}
+</body>
+</html>

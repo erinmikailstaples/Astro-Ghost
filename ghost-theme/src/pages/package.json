@@ -1,0 +1,13 @@
+{
+    "name": "erin's space",
+    "version": "1.0.0",
+    "engines": {
+      "ghost": ">=5.0.0"
+    },
+    "author": {
+      "name": "Erin Mikail Staples",
+      "email": "erin@erinmikailstaples.com",
+      "url": "https://erinmikailstaples.com"
+    },
+    "description": "A vibrant, nostalgic theme inspired by 2006 Tumblr, Lisa Frank, MySpace, Lily Allen, and e-girl aesthetics"
+  }
