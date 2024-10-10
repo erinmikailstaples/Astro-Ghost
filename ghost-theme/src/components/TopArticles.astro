@@ -1,0 +1,42 @@
+---
+// You might need to fetch top articles from Ghost here
+---
+<div class="browser-window top-articles">
+    <div class="browser-bar">
+        <div class="browser-buttons">
+            <div class="browser-button"></div>
+            <div class="browser-button"></div>
+            <div class="browser-button"></div>
+        </div>
+        <span>Top Articles</span>
+    </div>
+    <div class="browser-content">
+        <h2>Must-Read Posts</h2>
+        <ul>
+            <li><a href="#">My Journey into Web Development</a></li>
+            <li><a href="#">The Art of Nostalgic Design</a></li>
+            <li><a href="#">Why I Love the Y2K Aesthetic</a></li>
+        </ul>
+    </div>
+</div>
+
+<style>
+    .top-articles {
+        max-width: 600px;
+        margin: 20px auto;
+    }
+    ul {
+        list-style-type: none;
+        padding: 0;
+    }
+    li {
+        margin-bottom: 10px;
+    }
+    a {
+        color: var(--color-text);
+        text-decoration: none;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+</style>
