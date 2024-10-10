@@ -28,7 +28,7 @@ const siteTitle = "erin's blog is working"; // Replace with your actual site tit
                         <h2><a href={`/posts/${post.slug}`}>{post.data.title}</a></h2>
                     </header>
                     <section class="post-card-excerpt">
-                        <p>{post.data.excerpt || post.body.slice(0, 150) + '...'}</p>
+                        <p>{post.data.description || post.body.slice(0, 150) + '...'}</p>
                     </section>
                 </div>
             </div>
