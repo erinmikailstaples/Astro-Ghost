@@ -1,0 +1,47 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getAllPosts, getSiteSettings } from '../lib/ghost';
+
+const posts = await getAllPosts();
+const settings = await getSiteSettings();
+---
+
+<Layout title="Home">
+  <div class="container">
+    <header class="page-header">
+      <h1 class="page-title">{settings?.title || 'My Blog'}</h1>
+      <p class="page-description">{settings?.description || 'Welcome to my blog'}</p>
+    </header>
+
+    <div class="post-feed">
+      {posts.map(post => (
+        <article class="post-card">
+          {post.feature_image && (
+            <a class="post-card-image-link" href={`/post/${post.slug}/`}>
+              <img class="post-card-image" src={post.feature_image} alt={post.title} />
+            </a>
+          )}
+          <div class="post-card-content">
+            <a class="post-card-content-link" href={`/post/${post.slug}/`}>
+              <header class="post-card-header">
+                <h2 class="post-card-title">{post.title}</h2>
+              </header>
+              <section class="post-card-excerpt">
+                <p>{post.excerpt}</p>
+              </section>
+            </a>
+            <footer class="post-card-meta">
+              <time class="post-card-meta-date" datetime={post.published_at}>
+                {new Date(post.published_at).toLocaleDateString('en-US', {
+                  year: 'numeric',
+                  month: 'short',
+                  day: 'numeric'
+                })}
+              </time>
+            </footer>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</Layout> 

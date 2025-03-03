@@ -1,0 +1,61 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getPostBySlug, getAllPosts } from '../../lib/ghost';
+
+export async function getStaticPaths() {
+  const posts = await getAllPosts();
+  
+  return posts.map(post => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+
+// Format the date
+const formattedDate = new Date(post.published_at).toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+});
+---
+
+<Layout title={post.title}>
+  <article class="post-content container">
+    <header class="post-header">
+      <h1 class="post-title">{post.title}</h1>
+      <section class="post-meta">
+        <time class="post-date" datetime={post.published_at}>
+          {formattedDate}
+        </time>
+        {post.primary_tag && (
+          <span class="post-primary-tag">
+            <a href={`/tag/${post.primary_tag.slug}/`}>{post.primary_tag.name}</a>
+          </span>
+        )}
+      </section>
+    </header>
+
+    {post.feature_image && (
+      <figure class="post-feature-image">
+        <img src={post.feature_image} alt={post.title} />
+        {post.feature_image_caption && (
+          <figcaption>{post.feature_image_caption}</figcaption>
+        )}
+      </figure>
+    )}
+
+    <section class="post-content" set:html={post.html} />
+
+    <footer class="post-footer">
+      {post.tags && post.tags.length > 0 && (
+        <section class="post-tags">
+          {post.tags.map((tag) => (
+            <a href={`/tag/${tag.slug}/`}>{tag.name}</a>
+          ))}
+        </section>
+      )}
+    </footer>
+  </article>
+</Layout> 

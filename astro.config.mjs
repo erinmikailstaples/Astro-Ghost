@@ -1,9 +1,9 @@
 import { defineConfig } from 'astro/config';
 
 export default defineConfig({
-  outDir: '../ghost-erin-mikail/content/themes/erin-mikail-theme',
+  site: 'https://erin-mikail-blog.pages.dev',
+  output: 'static',
   build: {
-    format: 'file',
     assets: 'assets'
   },
   vite: {
@@ -11,10 +11,11 @@ export default defineConfig({
       cssCodeSplit: false,
       rollupOptions: {
         output: {
-          assetFileNames: 'assets/[name][extname]',
-          entryFileNames: '[name]'
+          manualChunks: {
+            vendor: ['@tryghost/content-api']
+          }
         }
       }
     }
   }
-});
+}); 

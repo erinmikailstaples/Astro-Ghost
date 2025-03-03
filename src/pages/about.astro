@@ -1,0 +1,49 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getPageBySlug } from '../lib/ghost';
+
+// Try to get the about page from Ghost
+const aboutPage = await getPageBySlug('about');
+
+// Fallback content if no about page exists in Ghost
+const title = aboutPage?.title || 'About Me';
+const content = aboutPage?.html || `
+  <p>This is a placeholder about page. Create an "about" page in your Ghost admin to replace this content.</p>
+`;
+---
+
+<Layout title={title}>
+  <div class="container">
+    <article class="page-content">
+      <header class="page-header">
+        <h1 class="page-title">{title}</h1>
+      </header>
+
+      {aboutPage?.feature_image && (
+        <figure class="page-feature-image">
+          <img src={aboutPage.feature_image} alt={title} />
+          {aboutPage.feature_image_caption && (
+            <figcaption>{aboutPage.feature_image_caption}</figcaption>
+          )}
+        </figure>
+      )}
+
+      <div class="browser-window about-me">
+        <div class="browser-bar">
+          <div class="browser-buttons">
+            <div class="browser-button"></div>
+            <div class="browser-button"></div>
+            <div class="browser-button"></div>
+          </div>
+          <span>About Erin Mikail Staples</span>
+        </div>
+        <div class="browser-content">
+          <h2>Hey there, I'm Erin! 👋</h2>
+          <p>I'm a developer, designer, and digital creator with a passion for all things nostalgic and vibrant. Welcome to my corner of the internet!</p>
+        </div>
+      </div>
+
+      <section class="page-content" set:html={content} />
+    </article>
+  </div>
+</Layout> 

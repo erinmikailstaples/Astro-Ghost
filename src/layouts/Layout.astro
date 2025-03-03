@@ -1,0 +1,61 @@
+---
+import '@fontsource/comic-neue';
+import '@fontsource/vt323';
+import '../styles/global.css';
+import { getSiteSettings } from '../lib/ghost';
+
+const { title } = Astro.props;
+const settings = await getSiteSettings();
+const siteTitle = settings?.title || 'My Ghost Blog';
+const siteDescription = settings?.description || 'Powered by Ghost & Astro';
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{title ? `${title} | ${siteTitle}` : siteTitle}</title>
+    <meta name="description" content={siteDescription}>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+</head>
+<body>
+    <div class="site-wrapper">
+        <header class="site-header">
+            <div class="container">
+                <div class="site-mast">
+                    <div class="site-mast-left">
+                        <a class="site-nav-logo" href="/">
+                            {settings?.logo ? 
+                                <img src={settings.logo} alt={siteTitle} /> : 
+                                siteTitle
+                            }
+                        </a>
+                    </div>
+                </div>
+                <nav class="site-nav">
+                    <div class="site-nav-left">
+                        <ul class="nav">
+                            <li class="nav-home"><a href="/">Home</a></li>
+                            <li class="nav-about"><a href="/about">About</a></li>
+                            <li class="nav-tags"><a href="/tags">Tags</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </header>
+
+        <main class="site-main">
+            <slot />
+        </main>
+
+        <footer class="site-footer">
+            <div class="container">
+                <div class="site-info">
+                    &copy; {new Date().getFullYear()} {siteTitle}
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+</html> 

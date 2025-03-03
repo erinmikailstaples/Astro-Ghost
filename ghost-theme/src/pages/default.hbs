@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="{{@site.locale}}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{meta_title}}</title>
+    <link rel="stylesheet" href="{{asset "css/screen.css"}}">
+    {{ghost_head}}
+</head>
+<body class="{{body_class}}">
+    <div class="site-wrapper">
+        <header class="site-header">
+            <div class="container">
+                <div class="site-mast">
+                    <div class="site-mast-left">
+                        <a class="site-nav-logo" href="{{@site.url}}">
+                            {{#if @site.logo}}
+                                <img src="{{@site.logo}}" alt="{{@site.title}}">
+                            {{else}}
+                                {{@site.title}}
+                            {{/if}}
+                        </a>
+                    </div>
+                </div>
+                <nav class="site-nav">
+                    <div class="site-nav-left">
+                        {{navigation}}
+                    </div>
+                </nav>
+            </div>
+        </header>
+
+        <main class="site-main">
+            {{{body}}}
+        </main>
+
+        <footer class="site-footer">
+            <div class="container">
+                <div class="site-info">
+                    &copy; {{date format="YYYY"}} {{@site.title}}
+                </div>
+            </div>
+        </footer>
+    </div>
+    {{ghost_foot}}
+</body>
+</html> 

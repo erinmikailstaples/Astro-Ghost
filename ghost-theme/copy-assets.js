@@ -9,22 +9,31 @@ if (!fs.existsSync(destDir)) {
     fs.mkdirSync(destDir, { recursive: true });
 }
 
-// Copy CSS files
+// Create assets/css directory
+const cssDir = path.join(destDir, 'css');
+if (!fs.existsSync(cssDir)) {
+    fs.mkdirSync(cssDir, { recursive: true });
+}
+
+// Copy CSS files to assets/css
 fs.readdirSync(sourceDir).forEach(file => {
     if (path.extname(file) === '.css') {
         const sourcePath = path.join(sourceDir, file);
-        const destPath = path.join(destDir, file);
+        const destPath = path.join(cssDir, file);
         fs.copyFileSync(sourcePath, destPath);
         console.log(`Copied ${file} to ${destPath}`);
     }
 });
 
 // Copy other asset directories if needed
-const assetDirs = ['fonts', 'images']; // Add any other directories you need to copy
+const assetDirs = ['fonts', 'images', 'js']; // Add any other directories you need to copy
 assetDirs.forEach(dir => {
     const sourcePath = path.join(sourceDir, dir);
     const destPath = path.join(destDir, dir);
     if (fs.existsSync(sourcePath)) {
+        if (!fs.existsSync(destPath)) {
+            fs.mkdirSync(destPath, { recursive: true });
+        }
         fs.cpSync(sourcePath, destPath, { recursive: true });
         console.log(`Copied ${dir} directory to ${destPath}`);
     }

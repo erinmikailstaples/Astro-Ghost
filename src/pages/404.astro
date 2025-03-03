@@ -1,0 +1,56 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="404 - Page Not Found">
+  <div class="container">
+    <div class="error-container">
+      <h1>404</h1>
+      <p>Page not found</p>
+      <div class="browser-window">
+        <div class="browser-bar">
+          <div class="browser-buttons">
+            <div class="browser-button"></div>
+            <div class="browser-button"></div>
+            <div class="browser-button"></div>
+          </div>
+          <span>Error</span>
+        </div>
+        <div class="browser-content">
+          <h2>Oops! This page has vanished into the digital void.</h2>
+          <p>The page you're looking for doesn't exist or has been moved.</p>
+          <a href="/" class="back-button">Go back home</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .error-container {
+    text-align: center;
+    padding: 10vw 4vw;
+  }
+
+  .error-container h1 {
+    font-size: 12rem;
+    margin: 0;
+    color: var(--color-primary);
+  }
+
+  .back-button {
+    display: inline-block;
+    margin-top: 2rem;
+    padding: 1rem 2rem;
+    background: var(--color-primary);
+    color: white;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background 0.3s ease;
+  }
+
+  .back-button:hover {
+    background: #2b9de8;
+    text-decoration: none;
+  }
+</style> 

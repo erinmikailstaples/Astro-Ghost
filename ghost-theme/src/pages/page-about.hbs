@@ -1,0 +1,35 @@
+{{!< default}}
+
+<div class="about-page">
+    <header class="about-header">
+        <h1 class="about-title">{{title}}</h1>
+    </header>
+
+    {{#if feature_image}}
+        <figure class="about-feature-image">
+            <img src="{{feature_image}}" alt="{{title}}">
+            {{#if feature_image_caption}}
+                <figcaption>{{feature_image_caption}}</figcaption>
+            {{/if}}
+        </figure>
+    {{/if}}
+
+    <div class="browser-window about-me">
+        <div class="browser-bar">
+            <div class="browser-buttons">
+                <div class="browser-button"></div>
+                <div class="browser-button"></div>
+                <div class="browser-button"></div>
+            </div>
+            <span>About Erin Mikail Staples</span>
+        </div>
+        <div class="browser-content">
+            <h2>Hey there, I'm Erin! 👋</h2>
+            <p>I'm a developer, designer, and digital creator with a passion for all things nostalgic and vibrant. Welcome to my corner of the internet!</p>
+        </div>
+    </div>
+
+    <section class="about-content">
+        {{content}}
+    </section>
+</div> 
